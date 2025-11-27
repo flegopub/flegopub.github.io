@@ -546,15 +546,14 @@ a {
     padding: 0.4rem 0.6rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 0.4rem;
     z-index: 50;
     backdrop-filter: blur(10px);
-    flex-wrap: wrap; /* consente di andare su due righe */
 }
 
 .bottom-bar-btn {
-    flex: 1 1 calc(50% - 0.3rem); /* due bottoni per riga di default */
+    flex: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -592,8 +591,6 @@ a {
     background-color: transparent;
     color: #FFE27A;
     border-color: rgba(255, 226, 122, 0.6);
-    flex-basis: 100%;            /* occupa tutta la seconda riga */
-    margin-top: 0.25rem;
 }
 
 .bottom-bar-btn:hover {
@@ -931,4 +928,10 @@ a {
     background: #FFC928;
     color: #111111;
     transform: translateY(-2px);
+}
+
+
+/* Nasconde il bottone Mappa nella bottom bar (presente solo nel footer) */
+.bottom-bar-btn--map {
+    display: none !important;
 }
