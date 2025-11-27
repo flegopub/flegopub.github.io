@@ -491,7 +491,6 @@ a {
     border-top: 1px solid rgba(255, 201, 40, 0.55);
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 4.5rem; /* spazio extra ~5 righe sotto il footer "MeStesso" */
 }
 
 .footer-top {
@@ -537,7 +536,7 @@ a {
 .bottom-bar {
     position: fixed;
     left: 50%;
-    bottom: calc(0.85rem + 34px);
+    bottom: 0.85rem;
     transform: translateX(-50%);
     width: 90vw; /* 90% della larghezza del display */
     background: rgba(0, 0, 0, 0.92);
