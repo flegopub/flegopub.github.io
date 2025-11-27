@@ -538,7 +538,7 @@ a {
     left: 50%;
     bottom: 0.85rem;
     transform: translateX(-50%);
-    width: min(420px, 100% - 1.6rem);
+    width: 90vw; /* 90% della larghezza del display */
     background: rgba(0, 0, 0, 0.92);
     border-radius: 999px;
     border: 1px solid rgba(255, 201, 40, 0.6);
