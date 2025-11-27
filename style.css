@@ -536,9 +536,9 @@ a {
 .bottom-bar {
     position: fixed;
     left: 50%;
+    bottom: 0.85rem;
     transform: translateX(-50%);
-    bottom: calc(2.8rem + env(safe-area-inset-bottom, 0px)); /* spostata un po' più in alto */
-    width: min(280px, 90%); /* molto più stretta, così i bottoni restano lontani dai bordi */
+    width: min(420px, 100% - 1.6rem);
     background: rgba(0, 0, 0, 0.92);
     border-radius: 999px;
     border: 1px solid rgba(255, 201, 40, 0.6);
@@ -546,15 +546,15 @@ a {
     padding: 0.4rem 0.6rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 0.4rem;
     z-index: 50;
     backdrop-filter: blur(10px);
+    flex-wrap: wrap; /* consente di andare su due righe */
 }
 
-
 .bottom-bar-btn {
-    flex: 1;
+    flex: 1 1 calc(50% - 0.3rem); /* due bottoni per riga di default */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -592,6 +592,8 @@ a {
     background-color: transparent;
     color: #FFE27A;
     border-color: rgba(255, 226, 122, 0.6);
+    flex-basis: 100%;            /* occupa tutta la seconda riga */
+    margin-top: 0.25rem;
 }
 
 .bottom-bar-btn:hover {
@@ -628,9 +630,8 @@ a {
     margin: 0 auto;
     min-height: 100vh;
     background: radial-gradient(circle at top, #FFC928 0, #111111 55%, #050505 100%);
-    padding: 1.3rem 1.2rem 5.4rem; /* bottom padding extra per non far coprire l'ultima riga dalla bottom-bar */
+    padding: 1.3rem 1.2rem 2.2rem;
 }
-
 
 /* header della pagina menu */
 
