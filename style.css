@@ -538,8 +538,8 @@ a {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px)); /* un po' più alta e lontana dal bordo */
-    width: min(320px, 100% - 4rem); /* più stretta: il bottone Mappa resta dentro la cornice */
+    bottom: calc(1.8rem + env(safe-area-inset-bottom, 0px)); /* un po' più in alto, dentro la cornice */
+    width: min(300px, 100% - 2.8rem); /* ancora più sicura: tutti i bottoni restano lontani dai bordi */
     background: rgba(0, 0, 0, 0.92);
     border-radius: 999px;
     border: 1px solid rgba(255, 201, 40, 0.6);
