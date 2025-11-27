@@ -533,13 +533,12 @@ a {
    BOTTOM FIXED BAR (CTA)
    ========================= */
 
-
 .bottom-bar {
     position: fixed;
     left: 50%;
+    bottom: 0.85rem;
     transform: translateX(-50%);
-    bottom: calc(1.8rem + env(safe-area-inset-bottom, 0px)); /* un po' più in alto, dentro la cornice */
-    width: min(300px, 100% - 2.8rem); /* ancora più sicura: tutti i bottoni restano lontani dai bordi */
+    width: min(420px, 100% - 1.6rem);
     background: rgba(0, 0, 0, 0.92);
     border-radius: 999px;
     border: 1px solid rgba(255, 201, 40, 0.6);
@@ -582,6 +581,12 @@ a {
     border-color: #25D366;
 }
 
+.bottom-bar-btn--ig {
+    background: #E1306C;
+    color: #ffffff;
+    border-color: #E1306C;
+}
+
 .bottom-bar-btn--call {
     background-color: #FFC928;
     color: #111111;
@@ -599,6 +604,7 @@ a {
 }
 
 .bottom-bar-btn--wa:hover,
+.bottom-bar-btn--ig:hover,
 .bottom-bar-btn--call:hover {
     filter: brightness(1.03);
 }
@@ -608,6 +614,7 @@ a {
     color: #111111;
     border-color: #FFC928;
 }
+
 /* spazio extra in fondo alle pagine per non coprire i contenuti con la barra */
 .home-body .page,
 .menu-body .menu-page {
@@ -928,10 +935,4 @@ a {
     background: #FFC928;
     color: #111111;
     transform: translateY(-2px);
-}
-
-
-/* Nasconde il bottone Mappa nella bottom bar (presente solo nel footer) */
-.bottom-bar-btn--map {
-    display: none !important;
 }
