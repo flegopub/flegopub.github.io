@@ -533,12 +533,13 @@ a {
    BOTTOM FIXED BAR (CTA)
    ========================= */
 
+
 .bottom-bar {
     position: fixed;
     left: 50%;
-    bottom: 0.85rem;
     transform: translateX(-50%);
-    width: min(420px, 100% - 1.6rem);
+    bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px)); /* un po' più alta e lontana dal bordo */
+    width: min(320px, 100% - 4rem); /* più stretta: il bottone Mappa resta dentro la cornice */
     background: rgba(0, 0, 0, 0.92);
     border-radius: 999px;
     border: 1px solid rgba(255, 201, 40, 0.6);
@@ -607,7 +608,6 @@ a {
     color: #111111;
     border-color: #FFC928;
 }
-
 /* spazio extra in fondo alle pagine per non coprire i contenuti con la barra */
 .home-body .page,
 .menu-body .menu-page {
