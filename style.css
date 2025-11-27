@@ -536,7 +536,7 @@ a {
 .bottom-bar {
     position: fixed;
     left: 50%;
-    bottom: 0.85rem;
+    bottom: calc(0.9rem + env(safe-area-inset-bottom, 0px));
     transform: translateX(-50%);
     width: min(420px, 100% - 1.6rem);
     background: rgba(0, 0, 0, 0.92);
@@ -551,6 +551,7 @@ a {
     z-index: 50;
     backdrop-filter: blur(10px);
 }
+
 
 .bottom-bar-btn {
     flex: 1;
