@@ -553,25 +553,26 @@ a {
 }
 
 .bottom-bar-btn {
-    flex: 1;
+    flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.35rem;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-weight: 600;
-    border-radius: 999px;
-    padding: 0.4rem 0.45rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px; /* piccoli quadrati con bordi tondi */
     border: 1px solid transparent;
     text-decoration: none;
-    white-space: nowrap;
     transition: background 0.18s ease, color 0.18s ease, transform 0.15s ease, border-color 0.18s ease;
+    padding: 0;
+}
+
+/* nasconde il testo, lasciando solo l'icona */
+.bottom-bar-btn span {
+    display: none;
 }
 
 .bottom-bar-btn i {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
 /* colori bottoni barra in basso */
