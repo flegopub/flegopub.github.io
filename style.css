@@ -536,7 +536,7 @@ a {
 .bottom-bar {
     position: fixed;
     left: 50%;
-    bottom: calc(0.9rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px));
     transform: translateX(-50%);
     width: min(420px, 100% - 1.6rem);
     background: rgba(0, 0, 0, 0.92);
@@ -628,8 +628,9 @@ a {
     margin: 0 auto;
     min-height: 100vh;
     background: radial-gradient(circle at top, #FFC928 0, #111111 55%, #050505 100%);
-    padding: 1.3rem 1.2rem 2.2rem;
+    padding: 1.3rem 1.2rem 5.4rem; /* bottom padding extra per non far coprire l'ultima riga dalla bottom-bar */
 }
+
 
 /* header della pagina menu */
 
