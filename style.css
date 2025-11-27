@@ -536,9 +536,9 @@ a {
 .bottom-bar {
     position: fixed;
     left: 50%;
-    bottom: calc(1.6rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(2.4rem + env(safe-area-inset-bottom, 0px)); /* più alta per stare dentro la cornice */
     transform: translateX(-50%);
-    width: min(340px, 100% - 3rem); /* più stretta per non toccare il bordo del frame */
+    width: min(320px, 100% - 3.4rem); /* ancora più stretta, così Mappa non tocca il bordo */
     background: rgba(0, 0, 0, 0.92);
     border-radius: 999px;
     border: 1px solid rgba(255, 201, 40, 0.6);
