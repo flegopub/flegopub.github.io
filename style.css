@@ -930,7 +930,7 @@ a {
 .scroll-top {
     position: fixed;
     right: 1.4rem;
-    bottom: 4.6rem; /* appena sopra la bottom-bar */
+    bottom: calc(4.6rem + 5px); /* appena sopra la bottom-bar, sollevato di 5px */
     z-index: 60;
     width: 30px;
     height: 30px;
