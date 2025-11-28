@@ -930,7 +930,16 @@ a {
     font-size: 0.8rem;
     cursor: pointer;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .scroll-top:hover {
