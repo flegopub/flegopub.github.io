@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /google6aa057142d6d44a6.html
+
+Sitemap: https://flegopub.github.io/sitemap.xml
+
