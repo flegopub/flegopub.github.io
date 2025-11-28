@@ -16,6 +16,9 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FFC928">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="logo.ico">
+    
     <!-- Canonical URL -->
     <link rel="canonical" href="https://flegopub.github.io/birre.html">
     
@@ -184,6 +187,19 @@
                 }
             });
         })();
+
+        // Registrazione Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function(registration) {
+                        console.log('Service Worker registrato con successo:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('Registrazione Service Worker fallita:', error);
+                    });
+            });
+        }
     </script>
 </body>
 </html>
