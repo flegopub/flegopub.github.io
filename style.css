@@ -182,16 +182,6 @@ a {
     margin-top: 0.4rem;
 }
 
-/* Effetto fade-out al testo hero quando si scrolla */
-.hero-text {
-    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-}
-
-.hero-text.fade-out {
-    opacity: 0;
-    transform: translateY(-10px);
-}
-
 /* CARDS */
 
 .content {
@@ -628,12 +618,9 @@ a {
 }
 
 /* spazio extra in fondo alle pagine per non coprire i contenuti con la barra */
-.home-body .page {
-    padding-bottom: 4.6rem;
-}
-
+.home-body .page,
 .menu-body .menu-page {
-    padding-bottom: 7rem; /* più spazio per le pagine menu per evitare che la bottom-bar copra il footer */
+    padding-bottom: 4.6rem;
 }
 
 /* =========================
@@ -837,7 +824,6 @@ a {
 
 .menu-footer {
     margin-top: 1.2rem;
-    margin-bottom: 2rem; /* spazio extra sotto il footer per evitare che venga coperto dalla bottom-bar */
     font-size: 0.7rem;
     text-align: center;
     color: rgba(255, 255, 255, 0.65);
@@ -930,7 +916,7 @@ a {
 .scroll-top {
     position: fixed;
     right: 1.4rem;
-    bottom: calc(4.6rem + 5px); /* appena sopra la bottom-bar, sollevato di 5px */
+    bottom: calc(4.6rem + 50px); /* sollevato per non coprire il bottone chiamami della bottom-bar */
     z-index: 60;
     width: 30px;
     height: 30px;
