@@ -85,9 +85,10 @@ a {
     width: 100%;
     height: 100%;
     border: none;
-    border-radius: inherit;
+    border-radius: 25px; /* leggermente più piccolo del device-frame per evitare che si veda lo sfondo nero */
     display: block;
     background-color: #111111;
+    overflow: hidden;
 }
 
 /* =========================
