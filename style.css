@@ -57,6 +57,8 @@ button {
 
 .desktop-wrapper {
     min-height: 100vh;
+    min-height: -webkit-fill-available; /* fallback per browser più vecchi */
+    min-height: 100dvh; /* fix per iOS Safari - dynamic viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,6 +71,7 @@ button {
     max-width: 100%;
     height: 780px;
     max-height: calc(100vh - 2.8rem);
+    max-height: calc(100dvh - 2.8rem); /* fix per iOS Safari */
     border-radius: 28px;
     border: 3px solid #FFC928;
     overflow: hidden;
@@ -108,10 +111,14 @@ button {
 
 .page {
     min-height: 100vh;
+    min-height: -webkit-fill-available; /* fallback per browser più vecchi */
+    min-height: 100dvh; /* fix per iOS Safari - dynamic viewport height */
     margin: 0 auto;
     max-width: 480px;
     background: radial-gradient(circle at top, #FFC928 0, #111111 55%, #050505 100%);
     padding: 0 1.2rem 2.4rem;
+    padding-left: calc(1.2rem + env(safe-area-inset-left)); /* safe area laterale sinistra */
+    padding-right: calc(1.2rem + env(safe-area-inset-right)); /* safe area laterale destra */
 }
 
 /* HERO */
@@ -554,13 +561,17 @@ button {
     position: fixed;
     left: 50%;
     bottom: calc(0.85rem + 29px);
+    bottom: calc(0.85rem + 29px + env(safe-area-inset-bottom)); /* safe area per iPhone con notch */
     transform: translateX(-50%);
     width: 90vw; /* 90% della larghezza del display */
+    max-width: calc(100vw - 2 * env(safe-area-inset-left)); /* safe area laterale */
     background: rgba(0, 0, 0, 0.92);
     border-radius: 999px;
     border: 1px solid rgba(255, 201, 40, 0.6);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
     padding: 0.4rem 0.6rem;
+    padding-left: calc(0.6rem + env(safe-area-inset-left)); /* safe area laterale sinistra */
+    padding-right: calc(0.6rem + env(safe-area-inset-right)); /* safe area laterale destra */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -655,8 +666,12 @@ button {
     max-width: 480px;
     margin: 0 auto;
     min-height: 100vh;
+    min-height: -webkit-fill-available; /* fallback per browser più vecchi */
+    min-height: 100dvh; /* fix per iOS Safari - dynamic viewport height */
     background: radial-gradient(circle at top, #FFC928 0, #111111 55%, #050505 100%);
     padding: 1.3rem 1.2rem 2.2rem;
+    padding-left: calc(1.2rem + env(safe-area-inset-left)); /* safe area laterale sinistra */
+    padding-right: calc(1.2rem + env(safe-area-inset-right)); /* safe area laterale destra */
 }
 
 /* header della pagina menu */
@@ -903,7 +918,9 @@ button {
 .menu-close {
     position: fixed;
     top: 0.9rem;
+    top: calc(0.9rem + env(safe-area-inset-top)); /* safe area per iPhone con notch */
     right: 1.2rem;
+    right: calc(1.2rem + env(safe-area-inset-right)); /* safe area laterale destra */
     border-radius: 999px;
     border: 1px solid rgba(17, 17, 17, 0.4);
     background: #FFC928;
@@ -939,7 +956,9 @@ button {
 .scroll-top {
     position: fixed;
     right: 1.4rem;
+    right: calc(1.4rem + env(safe-area-inset-right)); /* safe area laterale destra */
     bottom: calc(4.6rem + 50px); /* sollevato per non coprire il bottone chiamami della bottom-bar */
+    bottom: calc(4.6rem + 50px + env(safe-area-inset-bottom)); /* safe area per iPhone con notch */
     z-index: 60;
     width: 44px; /* aumentato da 30px per touch target minimo 44x44px */
     height: 44px; /* aumentato da 30px per touch target minimo 44x44px */
