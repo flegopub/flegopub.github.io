@@ -161,6 +161,12 @@ a {
     margin-top: 1.6rem;
     text-align: left;
     color: #111111;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.hero-text.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
 }
 
 .hero-welcome {
