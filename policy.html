@@ -292,9 +292,30 @@
         </section>
 
         <p class="menu-footer">
-            Ultimo aggiornamento: Dataoggi
+            Ultimo aggiornamento: <span id="data-aggiornamento"></span>
         </p>
     </div>
+
+    <script>
+        // Aggiorna automaticamente la data nel formato gg/mm/aaaa (fuso orario italiano)
+        (function() {
+            const dataElement = document.getElementById('data-aggiornamento');
+            if (!dataElement) return;
+            
+            // Ottieni la data corrente nel fuso orario italiano (Europe/Rome)
+            const oggi = new Date();
+            
+            // Converti in formato italiano (gg/mm/aaaa)
+            const giorno = String(oggi.getDate()).padStart(2, '0');
+            const mese = String(oggi.getMonth() + 1).padStart(2, '0');
+            const anno = oggi.getFullYear();
+            
+            // Formato: gg/mm/aaaa
+            const dataFormattata = giorno + '/' + mese + '/' + anno;
+            
+            dataElement.textContent = dataFormattata;
+        })();
+    </script>
 </body>
 </html>
 
