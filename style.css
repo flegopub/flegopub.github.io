@@ -624,9 +624,12 @@ a {
 }
 
 /* spazio extra in fondo alle pagine per non coprire i contenuti con la barra */
-.home-body .page,
-.menu-body .menu-page {
+.home-body .page {
     padding-bottom: 4.6rem;
+}
+
+.menu-body .menu-page {
+    padding-bottom: 7rem; /* più spazio per le pagine menu per evitare che la bottom-bar copra il footer */
 }
 
 /* =========================
@@ -830,6 +833,7 @@ a {
 
 .menu-footer {
     margin-top: 1.2rem;
+    margin-bottom: 2rem; /* spazio extra sotto il footer per evitare che venga coperto dalla bottom-bar */
     font-size: 0.7rem;
     text-align: center;
     color: rgba(255, 255, 255, 0.65);
