@@ -312,6 +312,246 @@
             });
         }
     </script>
+    
+    <!-- Sfondo birra animato -->
+    <div class="beer-background">
+        <svg id="beer-svg-bg" viewBox="0 0 220 300" role="img" aria-label="Birra 2D con schiuma e bollicine (trasparente)"></svg>
+    </div>
+    
+    <script>
+        // Script per creare e animare la birra di sfondo
+        (function() {
+            const beerBg = document.querySelector('.beer-background');
+            if (!beerBg) return;
+            
+            const svg = beerBg.querySelector('svg');
+            const svgNS = "http://www.w3.org/2000/svg";
+            
+            // Genera ID unici per evitare conflitti
+            const uniqueId = 'bg-beer-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+            const beerBodyClipId = uniqueId + '-bodyClip';
+            const beerClipId = uniqueId + '-clip';
+            const beerGradId = uniqueId + '-grad';
+            
+            // Crea defs
+            const defs = document.createElementNS(svgNS, "defs");
+            
+            const beerBodyClip = document.createElementNS(svgNS, "clipPath");
+            beerBodyClip.setAttribute("id", beerBodyClipId);
+            const rect1 = document.createElementNS(svgNS, "rect");
+            rect1.setAttribute("x", "64");
+            rect1.setAttribute("y", "56");
+            rect1.setAttribute("width", "92");
+            rect1.setAttribute("height", "190");
+            rect1.setAttribute("rx", "16");
+            beerBodyClip.appendChild(rect1);
+            defs.appendChild(beerBodyClip);
+            
+            const beerClip = document.createElementNS(svgNS, "clipPath");
+            beerClip.setAttribute("id", beerClipId);
+            const rect2 = document.createElementNS(svgNS, "rect");
+            rect2.setAttribute("x", "64");
+            rect2.setAttribute("y", "82");
+            rect2.setAttribute("width", "92");
+            rect2.setAttribute("height", "164");
+            rect2.setAttribute("rx", "16");
+            beerClip.appendChild(rect2);
+            defs.appendChild(beerClip);
+            
+            const beerGrad = document.createElementNS(svgNS, "linearGradient");
+            beerGrad.setAttribute("id", beerGradId);
+            beerGrad.setAttribute("x1", "0");
+            beerGrad.setAttribute("y1", "0");
+            beerGrad.setAttribute("x2", "0");
+            beerGrad.setAttribute("y2", "1");
+            const stop1 = document.createElementNS(svgNS, "stop");
+            stop1.setAttribute("offset", "0");
+            stop1.setAttribute("stop-color", "var(--beer1)");
+            const stop2 = document.createElementNS(svgNS, "stop");
+            stop2.setAttribute("offset", ".55");
+            stop2.setAttribute("stop-color", "var(--beer2)");
+            const stop3 = document.createElementNS(svgNS, "stop");
+            stop3.setAttribute("offset", "1");
+            stop3.setAttribute("stop-color", "var(--beer3)");
+            beerGrad.appendChild(stop1);
+            beerGrad.appendChild(stop2);
+            beerGrad.appendChild(stop3);
+            defs.appendChild(beerGrad);
+            
+            svg.appendChild(defs);
+            
+            // Crea gruppo principale
+            const beerSlosh = document.createElementNS(svgNS, "g");
+            beerSlosh.setAttribute("class", "beer-slosh");
+            
+            // Gruppo body con clip-path
+            const beerBodyGroup = document.createElementNS(svgNS, "g");
+            beerBodyGroup.setAttribute("clip-path", "url(#" + beerBodyClipId + ")");
+            
+            const beerRect = document.createElementNS(svgNS, "rect");
+            beerRect.setAttribute("x", "64");
+            beerRect.setAttribute("y", "98");
+            beerRect.setAttribute("width", "92");
+            beerRect.setAttribute("height", "148");
+            beerRect.setAttribute("rx", "16");
+            beerRect.setAttribute("fill", "url(#" + beerGradId + ")");
+            beerBodyGroup.appendChild(beerRect);
+            
+            const path = document.createElementNS(svgNS, "path");
+            path.setAttribute("d", "M76 92 C86 120, 78 190, 92 236");
+            path.setAttribute("fill", "none");
+            path.setAttribute("stroke", "rgba(255,255,255,.18)");
+            path.setAttribute("stroke-width", "10");
+            path.setAttribute("stroke-linecap", "round");
+            beerBodyGroup.appendChild(path);
+            
+            const bubblesGroup = document.createElementNS(svgNS, "g");
+            bubblesGroup.setAttribute("clip-path", "url(#" + beerClipId + ")");
+            beerBodyGroup.appendChild(bubblesGroup);
+            
+            beerSlosh.appendChild(beerBodyGroup);
+            
+            // Gruppo schiuma
+            const foamBob = document.createElementNS(svgNS, "g");
+            foamBob.setAttribute("class", "foam-bob");
+            
+            const foamPath = document.createElementNS(svgNS, "path");
+            foamPath.setAttribute("d", "M60 84 C70 68, 90 72, 100 60 C112 46, 128 54, 140 62 C152 70, 170 66, 164 84 L164 98 C152 100, 140 96, 128 100 C116 104, 104 100, 92 102 C80 104, 70 100, 60 98 Z");
+            foamPath.setAttribute("fill", "var(--foam)");
+            foamBob.appendChild(foamPath);
+            
+            const circles = [
+                {cx: 82, cy: 78, r: 6, opacity: 0.95},
+                {cx: 120, cy: 70, r: 8, opacity: 0.98},
+                {cx: 145, cy: 80, r: 5, opacity: 0.92},
+                {cx: 104, cy: 86, r: 4, opacity: 0.9}
+            ];
+            
+            circles.forEach(function(c) {
+                const circle = document.createElementNS(svgNS, "circle");
+                circle.setAttribute("cx", c.cx);
+                circle.setAttribute("cy", c.cy);
+                circle.setAttribute("r", c.r);
+                circle.setAttribute("fill", "var(--foam)");
+                circle.setAttribute("opacity", c.opacity);
+                foamBob.appendChild(circle);
+            });
+            
+            beerSlosh.appendChild(foamBob);
+            svg.appendChild(beerSlosh);
+            
+            // Genera le bollicine
+            const MIN_X = 72, MAX_X = 148;
+            const BASE_Y = 238;
+            const COUNT = 26;
+            
+            function rand(min, max) { return Math.random() * (max - min) + min; }
+            
+            for(let i = 0; i < COUNT; i++) {
+                const c = document.createElementNS(svgNS, "circle");
+                const r = rand(1.8, 5.2);
+                const x = rand(MIN_X, MAX_X);
+                const y = rand(BASE_Y - 10, BASE_Y + 18);
+                const dur = rand(1.6, 3.4);
+                const delay = rand(0, 2.8);
+                
+                c.setAttribute("cx", x.toFixed(2));
+                c.setAttribute("cy", y.toFixed(2));
+                c.setAttribute("r", r.toFixed(2));
+                c.setAttribute("fill", "var(--bubble)");
+                c.classList.add("bubble");
+                c.style.animationDuration = dur.toFixed(2) + "s";
+                c.style.animationDelay = (-delay).toFixed(2) + "s";
+                c.style.opacity = rand(0.35, 0.9).toFixed(2);
+                
+                bubblesGroup.appendChild(c);
+            }
+        })();
+    </script>
+    
+    <script>
+        // Animazione dello sfondo birra basata sullo scroll
+        (function() {
+            const beerBg = document.querySelector('.beer-background');
+            if (!beerBg) return;
+            
+            const beerSlosh = beerBg.querySelector('.beer-slosh');
+            const foamBob = beerBg.querySelector('.foam-bob');
+            
+            // Disabilita le animazioni di default
+            if (beerSlosh) beerSlosh.style.animationPlayState = 'paused';
+            if (foamBob) foamBob.style.animationPlayState = 'paused';
+            
+            let isScrolling = false;
+            let scrollTimeout;
+            
+            function updateBeerPosition() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const documentHeight = document.documentElement.scrollHeight;
+                const viewportHeight = window.innerHeight;
+                const maxScroll = documentHeight - viewportHeight;
+                
+                if (maxScroll <= 0) {
+                    // Nessuno scroll disponibile, centra lo sfondo
+                    beerBg.style.top = '50%';
+                    beerBg.style.transform = 'translate(-50%, -50%) scale(3.0)';
+                    return;
+                }
+                
+                // Calcola la percentuale di scroll (0 = top, 1 = bottom)
+                const scrollPercent = scrollTop / maxScroll;
+                
+                // Quando scrollPercent = 0 (top pagina): top = 100vh (bottom)
+                // Quando scrollPercent = 1 (bottom pagina): top = 0vh (top)
+                const topPosition = 100 - (scrollPercent * 100);
+                
+                // Applica la nuova posizione
+                beerBg.style.top = topPosition + 'vh';
+                beerBg.style.transform = 'translate(-50%, 0) scale(3.0)';
+            }
+            
+            function startScrollAnimation() {
+                isScrolling = true;
+                if (beerSlosh) beerSlosh.style.animationPlayState = 'running';
+                if (foamBob) foamBob.style.animationPlayState = 'running';
+                
+                // Reset del timeout
+                clearTimeout(scrollTimeout);
+            }
+            
+            function stopScrollAnimation() {
+                isScrolling = false;
+                if (beerSlosh) beerSlosh.style.animationPlayState = 'paused';
+                if (foamBob) foamBob.style.animationPlayState = 'paused';
+            }
+            
+            // Aggiorna la posizione all'avvio
+            updateBeerPosition();
+            
+            // Aggiorna la posizione durante lo scroll con throttling per performance
+            let ticking = false;
+            window.addEventListener('scroll', function() {
+                startScrollAnimation();
+                
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        updateBeerPosition();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+                
+                // Ferma l'animazione dopo che lo scroll si ferma
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(stopScrollAnimation, 150);
+            });
+            
+            // Aggiorna anche quando la finestra viene ridimensionata
+            window.addEventListener('resize', function() {
+                updateBeerPosition();
+            });
+        })();
+    </script>
 </body>
 </html>
 

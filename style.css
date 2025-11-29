@@ -23,11 +23,12 @@ body::-webkit-scrollbar {
 
 body {
     font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background-color: #000000;
+    background-color: #ffffff;
     color: #ffffff;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: rgba(255, 201, 40, 0.3); /* feedback touch giallo */
     touch-action: manipulation; /* migliora scroll e previene zoom accidentale */
+    position: relative;
 }
 
 a {
@@ -106,7 +107,7 @@ button {
    ========================= */
 
 .home-body {
-    background-color: #111111;
+    background-color: #ffffff;
 }
 
 .page {
@@ -115,7 +116,7 @@ button {
     min-height: 100dvh; /* fix per iOS Safari - dynamic viewport height */
     margin: 0 auto;
     max-width: 480px;
-    background: radial-gradient(circle at top, #FFC928 0, #111111 55%, #050505 100%);
+    background: transparent;
     padding: 0 1.2rem 2.4rem;
     padding-left: calc(1.2rem + env(safe-area-inset-left)); /* safe area laterale sinistra */
     padding-right: calc(1.2rem + env(safe-area-inset-right)); /* safe area laterale destra */
@@ -659,7 +660,7 @@ button {
    ========================= */
 
 .menu-body {
-    background-color: #111111;
+    background-color: #ffffff;
 }
 
 .menu-page {
@@ -668,7 +669,7 @@ button {
     min-height: 100vh;
     min-height: -webkit-fill-available; /* fallback per browser più vecchi */
     min-height: 100dvh; /* fix per iOS Safari - dynamic viewport height */
-    background: radial-gradient(circle at top, #FFC928 0, #111111 55%, #050505 100%);
+    background: transparent;
     padding: 1.3rem 1.2rem 2.2rem;
     padding-left: calc(1.2rem + env(safe-area-inset-left)); /* safe area laterale sinistra */
     padding-right: calc(1.2rem + env(safe-area-inset-right)); /* safe area laterale destra */
@@ -989,4 +990,93 @@ button {
     background: #FFC928;
     color: #111111;
     transform: translateY(-2px);
+}
+
+/* =========================
+   SFONDO BIRRA ANIMATO
+   ========================= */
+
+.beer-background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 90vw;
+    height: 90vh;
+    max-width: 90vw;
+    max-height: 90vh;
+    z-index: 1;
+    opacity: 1.0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(3.0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.beer-background svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+/* Variabili CSS per la birra */
+:root {
+    --beer1: #ffcc4d;
+    --beer2: #f5a623;
+    --beer3: #d9822b;
+    --foam: #cccccc;
+    --foamShadow: rgba(0,0,0,.08);
+    --bubble: rgba(255,255,255,.45);
+}
+
+.beer-slosh {
+    transform-origin: 50% 68%;
+    animation: slosh 2.8s ease-in-out infinite;
+}
+
+@keyframes slosh {
+    0%, 100% { transform: rotate(-1.2deg) translateY(0px); }
+    50% { transform: rotate(1.2deg) translateY(1px); }
+}
+
+.foam-bob {
+    transform-origin: 50% 0%;
+    animation: foamBob 1.7s ease-in-out infinite;
+    filter: drop-shadow(0 2px 0 var(--foamShadow));
+}
+
+@keyframes foamBob {
+    0%, 100% { transform: scale(1.2) translateY(0px) scaleX(1); }
+    50% { transform: scale(1.2) translateY(1.5px) scaleX(1.01); }
+}
+
+.beer-background .bubble {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation-name: bubbleRise;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    will-change: transform, opacity;
+}
+
+@keyframes bubbleRise {
+    0% { transform: translateY(0px) scale(.85); opacity: 0; }
+    10% { opacity: .9; }
+    80% { opacity: .65; }
+    100% { transform: translateY(-130px) scale(1.06); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .beer-slosh, .foam-bob, .beer-background .bubble {
+        animation: none !important;
+    }
+}
+
+/* Assicura che il contenuto sia sopra lo sfondo birra */
+.page,
+.menu-page,
+.desktop-wrapper {
+    position: relative;
+    z-index: 2;
 }

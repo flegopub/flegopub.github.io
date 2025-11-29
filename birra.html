@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Birra SVG trasparente</title>
+  <style>
+    :root{
+      --beer1:#ffcc4d;
+      --beer2:#f5a623;
+      --beer3:#d9822b;
+      --foam:#fffdfa;
+      --foamShadow: rgba(0,0,0,.08);
+      --bubble: rgba(255,255,255,.45);
+    }
+
+    html,body{height:100%}
+    body{
+      margin:0;
+      display:grid;
+      place-items:center;
+      background: transparent;
+    }
+
+    svg{
+      width:min(320px, 90vw);
+      height:auto;
+      display:block;
+    }
+
+    .beer-slosh{
+      transform-origin: 50% 68%;
+      animation: slosh 2.8s ease-in-out infinite;
+    }
+    @keyframes slosh{
+      0%,100% { transform: rotate(-1.2deg) translateY(0px); }
+      50%     { transform: rotate( 1.2deg) translateY(1px); }
+    }
+
+    .foam-bob{
+      transform-origin: 50% 0%;
+      animation: foamBob 1.7s ease-in-out infinite;
+      filter: drop-shadow(0 2px 0 var(--foamShadow));
+    }
+    @keyframes foamBob{
+      0%,100% { transform: translateY(0px) scaleX(1); }
+      50%     { transform: translateY(1.5px) scaleX(1.01); }
+    }
+
+    .bubble{
+      transform-box: fill-box;
+      transform-origin: center;
+      animation-name: bubbleRise;
+      animation-timing-function: ease-in;
+      animation-iteration-count: infinite;
+      will-change: transform, opacity;
+    }
+    @keyframes bubbleRise{
+      0%   { transform: translateY(0px) scale(.85); opacity: 0; }
+      10%  { opacity: .9; }
+      80%  { opacity: .65; }
+      100% { transform: translateY(-130px) scale(1.06); opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .beer-slosh, .foam-bob, .bubble{ animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<svg viewBox="0 0 220 300" role="img" aria-label="Birra 2D con schiuma e bollicine (trasparente)">
+  <defs>
+    <clipPath id="beerBodyClip">
+      <rect x="64" y="56" width="92" height="190" rx="16" />
+    </clipPath>
+
+    <clipPath id="beerClip">
+      <rect x="64" y="82" width="92" height="164" rx="16" />
+    </clipPath>
+
+    <linearGradient id="beerGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="var(--beer1)"/>
+      <stop offset=".55" stop-color="var(--beer2)"/>
+      <stop offset="1"   stop-color="var(--beer3)"/>
+    </linearGradient>
+  </defs>
+
+  <g class="beer-slosh">
+    <g clip-path="url(#beerBodyClip)">
+      <rect x="64" y="78" width="92" height="168" rx="16" fill="url(#beerGrad)"/>
+
+      <path d="M76 92 C86 120, 78 190, 92 236"
+            fill="none" stroke="rgba(255,255,255,.18)" stroke-width="10" stroke-linecap="round"/>
+
+      <g id="bubbles" clip-path="url(#beerClip)"></g>
+    </g>
+
+    <g class="foam-bob">
+      <path d="M60 84
+               C70 68, 90 72, 100 60
+               C112 46, 128 54, 140 62
+               C152 70, 170 66, 164 84
+               L164 98
+               C152 100, 140 96, 128 100
+               C116 104, 104 100, 92 102
+               C80 104, 70 100, 60 98 Z"
+            fill="var(--foam)"/>
+
+      <circle cx="82" cy="78" r="6" fill="var(--foam)" opacity=".95"/>
+      <circle cx="120" cy="70" r="8" fill="var(--foam)" opacity=".98"/>
+      <circle cx="145" cy="80" r="5" fill="var(--foam)" opacity=".92"/>
+      <circle cx="104" cy="86" r="4" fill="var(--foam)" opacity=".9"/>
+    </g>
+  </g>
+</svg>
+
+<script>
+  const bubblesGroup = document.getElementById('bubbles');
+
+  const MIN_X = 72, MAX_X = 148;
+  const BASE_Y = 238;
+  const COUNT = 26;
+
+  function rand(min, max){ return Math.random() * (max - min) + min; }
+
+  for(let i=0; i<COUNT; i++){
+    const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    const r = rand(1.8, 5.2);
+    const x = rand(MIN_X, MAX_X);
+    const y = rand(BASE_Y - 10, BASE_Y + 18);
+
+    const dur = rand(1.6, 3.4);
+    const delay = rand(0, 2.8);
+
+    c.setAttribute("cx", x.toFixed(2));
+    c.setAttribute("cy", y.toFixed(2));
+    c.setAttribute("r", r.toFixed(2));
+    c.setAttribute("fill", "var(--bubble)");
+
+    c.classList.add("bubble");
+    c.style.animationDuration = dur.toFixed(2) + "s";
+    c.style.animationDelay = (-delay).toFixed(2) + "s";
+    c.style.opacity = rand(0.35, 0.9).toFixed(2);
+
+    bubblesGroup.appendChild(c);
+  }
+</script>
+
+</body>
+</html>
