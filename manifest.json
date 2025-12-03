@@ -2,7 +2,7 @@
   "name": "Flègo · Sorsi & Morsi",
   "short_name": "Flègo",
   "description": "Pub, taglieri, burger, birre e cocktail a due passi dallo stadio. Piazza Gabriele D'Annunzio, 11/14, 80125 Napoli (NA)",
-  "start_url": "/",
+  "start_url": "/flegopub/index.html",
   "display": "standalone",
   "background_color": "#111111",
   "theme_color": "#FFC928",
