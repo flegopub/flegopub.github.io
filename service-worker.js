@@ -1,32 +1,29 @@
 // Service Worker per Flègo - Strategia Network First
 // Cache name con versione per facilitare aggiornamenti
-const CACHE_NAME = 'flegopub-v2';
-const RUNTIME_CACHE = 'flegopub-runtime-v2';
-
-// Base path per subdirectory (se l'app è in /flegopub/)
-const BASE_PATH = '/flegopub';
+const CACHE_NAME = 'flegopub-v1';
+const RUNTIME_CACHE = 'flegopub-runtime-v1';
 
 // File da mettere in cache all'installazione
 const PRECACHE_FILES = [
-  BASE_PATH + '/',
-  BASE_PATH + '/index.html',
-  BASE_PATH + '/home.html',
-  BASE_PATH + '/style.css',
-  BASE_PATH + '/manifest.json',
-  BASE_PATH + '/logo.png',
-  BASE_PATH + '/logomini.png',
-  BASE_PATH + '/taglieri.html',
-  BASE_PATH + '/panini.html',
-  BASE_PATH + '/primi-secondi-contorni.html',
-  BASE_PATH + '/piccoli-morsi.html',
-  BASE_PATH + '/frittatine.html',
-  BASE_PATH + '/birre.html',
-  BASE_PATH + '/birre-altre-bevande.html',
-  BASE_PATH + '/vini.html',
-  BASE_PATH + '/cocktails.html',
-  BASE_PATH + '/autore.html',
-  BASE_PATH + '/policy.html',
-  BASE_PATH + '/404.html'
+  '/',
+  '/index.html',
+  '/home.html',
+  '/style.css',
+  '/manifest.json',
+  '/logo.png',
+  '/logomini.png',
+  '/taglieri.html',
+  '/panini.html',
+  '/primi-secondi-contorni.html',
+  '/piccoli-morsi.html',
+  '/frittatine.html',
+  '/birre.html',
+  '/birre-altre-bevande.html',
+  '/vini.html',
+  '/cocktails.html',
+  '/autore.html',
+  '/policy.html',
+  '/404.html'
 ];
 
 // Installazione: precache dei file principali
